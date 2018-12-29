@@ -1,6 +1,3 @@
-/*
-  智障的题，质量不够，空间来凑 
-*/
 #include<bits/stdc++.h>
 
 using namespace std;
