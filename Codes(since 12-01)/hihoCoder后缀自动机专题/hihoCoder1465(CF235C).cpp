@@ -2,7 +2,7 @@
 
 using namespace std;
 
-const int N = 2e5 + 10;
+const int N = 2e6 + 10;
 
 int n, t, q, last, ch[N][26], father[N], len[N], endpos[N], c[N], sorted[N], visit[N];
 char s[N];
