@@ -127,7 +127,7 @@ int main() {
   for (int i = 1; i <= n; ++i) {
     scanf("%d", &a[i]);
   }
-  long long answer = (long long)n * (n - 1) / 2;
+  long long answer = (long long) n * (n - 1) / 2;
   --n;
   for (int i = 1; i <= n; ++i) {
     a[i] = a[i + 1] - a[i];
@@ -151,24 +151,24 @@ int main() {
       l = v + len[p] + 1;
       r = n;
       if (l <= r) {
-        answer += (long long)query(1, n, root[to], l, r).first * len[p];
+        answer += (long long) query(1, n, root[to], l, r).first * len[p];
       }
       l = v + 2;
       r = min(v + len[p], n);
       if (l <= r) {
         pair<int, long long> result = query(1, n, root[to], l, r);
-        answer += result.second - (long long)result.first * (v + 1);
+        answer += result.second - (long long) result.first * (v + 1);
       }
       l = 1;
       r = v - len[p] - 1;
       if (l <= r) {
-        answer += (long long)query(1, n, root[to], l, r).first * len[p];
+        answer += (long long) query(1, n, root[to], l, r).first * len[p];
       }
       l = max(1, v - len[p]);
       r = v - 2;
       if (l <= r) {
         pair<int, long long> result = query(1, n, root[to], l, r);
-        answer += (long long)result.first * (v - 1) - result.second;
+        answer += (long long) result.first * (v - 1) - result.second;
       }
     }
     root[p] = merge(root[p], root[u]);
