@@ -2,7 +2,7 @@
 
 using namespace std;
 
-const int mod = 1000000007, inv2 = 500000004, inv6 = 166666668, up = 10000001, bas = 2333333;
+const int mod = 1000000007, inv2 = 500000004, inv6 = 166666668, up = 4641589, md = 1000003;
 
 int main() {
   function<int (int, int)> mul = [&] (int x, int y) {
@@ -50,24 +50,37 @@ int main() {
     n %= mod;
     return mul(mul(mul(n, n + 1), (n * 2 + 1)), inv6);
   };
-  map<long long, int> value;
+  vector<pair<long long, int>> value[md];
+  function<int (long long)> find = [&] (long long v) {
+    int p = v % md;
+    for (auto e : value[p]) {
+      if (e.first == v) {
+        return e.second;
+      }
+    }
+    return -1;
+  };
+  function<void (long long, int)> insert = [&] (long long v, int result) {
+    value[v % md].emplace_back(v, result);
+  };
   function<int (long long)> f = [&] (long long n) {
-    if (value.count(n)) {
-      return value[n];
+    int returned = find(n);
+    if (~returned) {
+      return returned;
     } else {
-      int result = 0;
       if (n < up) {
-        result = phi[n];
+        return phi[n];
       } else {
-        int x = n % mod;
+        int result = 0, x = n % mod;
         x = mul(mul(x, x + 1), inv2);
         result = mul(x, x);
         for (long long i = 2, last; i <= n; i = last + 1) {
           last = n / (n / i);
           sub(result, mul((sum_pow2(last) - sum_pow2(i - 1) + mod) % mod, f(n / i)));
         }
+        insert(n, result);
+        return result;
       }
-      return value[n] = result;
     }
   };
   long long n;
