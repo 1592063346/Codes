@@ -79,8 +79,6 @@ void min_25_sieve() {
   }
 }
 
-int tt;
-
 int get_s(long long n, int x) {
   if (n <= 1 || (x <= primes.size() && primes[x - 1] > n)) {
     return 0;
