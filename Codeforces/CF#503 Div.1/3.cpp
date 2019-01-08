@@ -1,7 +1,3 @@
-/*
- * fuck!
- * i wonder why there are so many problems on greedy or constructive algorithms.
- */
 #include<bits/stdc++.h>
 
 using namespace std;
