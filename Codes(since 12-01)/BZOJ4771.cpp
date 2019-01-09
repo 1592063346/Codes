@@ -2,26 +2,6 @@
 
 using namespace std;
 
-template<typename T> inline void read(T& x) {
-  char c = getchar();
-  bool f = false;
-  for (x = 0; !isdigit(c); c = getchar()) {
-    if (c == '-') {
-      f = true;
-    }
-  }
-  for (; isdigit(c); c = getchar()) {
-    x = x * 10 + c - '0';
-  }
-  if (f) {
-    x = -x;
-  }
-}
-
-template<typename T, typename... U> inline void read(T& x, U&... y) {
-  read(x), read(y...);
-}
-
 const int N = 2e5 + 10;
 
 int tt, n, q, c[N], dfn[N], rdfn[N], depth[N], dfn_out[N], dfn_t, first_p[N], id[N][18], d[N][18], total, logv[N], root[N], t, sum[N * 40], lo[N * 40], ro[N * 40];
@@ -111,20 +91,20 @@ int query(int l, int r, int o, int ql, int qr) {
 }
 
 int main() {
-  read(tt);
+  scanf("%d", &tt);
   while (tt--) {
-    read(n, q);
+    scanf("%d%d", &n, &q);
     for (int i = 1; i <= n; ++i) {
       graph[i].clear();
       depth_set[i].clear();
       color_set[i].clear();
     }
     for (int i = 1; i <= n; ++i) {
-      read(c[i]);
+      scanf("%d", &c[i]);
     }
     for (int i = 2; i <= n; ++i) {
       int x;
-      read(x);
+      scanf("%d", &x);
       graph[x].push_back(i);
     }
     dfn_t = 0;
@@ -162,7 +142,7 @@ int main() {
     int last_answer = 0;
     for (int i = 1; i <= q; ++i) {
       int x, d;
-      read(x, d);
+      scanf("%d%d", &x, &d);
       x ^= last_answer;
       d ^= last_answer;
       d = min(d + depth[x], n);
