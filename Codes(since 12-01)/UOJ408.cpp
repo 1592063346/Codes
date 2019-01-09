@@ -3,10 +3,10 @@
 
 using namespace std;
 
-const int maxn = 3e5 + 10, cycle = 19260817;
+const int N = 3e5 + 10, cycle = 19260817;
 
-int switches, rev[maxn], value[maxn];
-vector<int> go[maxn], c, x, y;
+int switches, rev[N], value[N];
+vector<int> go[N], c, x, y;
 
 void move(vector<int>& a, int value) {
   int old = a.size();
