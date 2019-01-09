@@ -5,7 +5,7 @@ using namespace std;
 const int N = 1e6 + 10;
 const long long mod = 1e12 + 39;
 
-long long n;
+long long n, powk[N];
 int tt, sq;
 bool is_prime[N];
 vector<int> primes;
@@ -127,16 +127,22 @@ int main() {
     sq = sqrt(n);
     primes.clear();
     values.clear();
+    memset(powk, 0, sizeof powk);
     sieve(sq);
     min_25_sieve();
     long long answer = 1;
+    int maxk = 1;
     for (auto p : primes) {
       long long t = p;
       for (int j = 1; t <= n; ++j, t *= p) {
         long long num1 = mul(t, same_diff(n / t), mod - 1);
         long long num2 = mul(t * p, same_diff(n / t / p), mod - 1);
-        answer = mul(answer, qpow(j + 1, sub(num1, num2, mod - 1)), mod);
+        maxk = max(maxk, j + 1);
+        powk[j + 1] = add(powk[j + 1], sub(num1, num2, mod - 1), mod - 1);
       }
+    }
+    for (int i = 2; i <= maxk; ++i) {
+      answer = mul(answer, qpow(i, powk[i]), mod);
     }
     long long powm = 0;
     for (long long i = sq + 1; i <= n; i = n / (n / i) + 1) {
