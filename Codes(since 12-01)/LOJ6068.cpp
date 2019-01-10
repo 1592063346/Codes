@@ -97,11 +97,9 @@ int main() {
   }
   s = ++tt;
   t = ++tt;
-  int empty_pos = 0;
   for (int i = 1; i <= n; ++i) {
     for (int j = 1; j <= n; ++j) {
       if (grid[i][j] == '.') {
-        ++empty_pos;
         if (i == 1 || grid[i - 1][j] == '#') {
           ++tt;
           for (int l = i; l <= n && grid[l][j] == '.'; ++l) {
