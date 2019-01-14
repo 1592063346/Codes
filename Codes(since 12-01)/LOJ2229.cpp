@@ -8,7 +8,7 @@ int n, m, from[N][2], a[N];
 double answer[N];
 
 int main() {
-  srand(time(0));
+  srand(2333);
   scanf("%d%d", &n, &m);
   int M = 100000000 / n;
   for (int i = m + 1; i <= n; ++i) {
