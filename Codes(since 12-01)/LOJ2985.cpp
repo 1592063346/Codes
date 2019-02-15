@@ -56,6 +56,7 @@ void find_price(int task_id, int n, int k, int* ans) {
       }
     }
   } else {
+    // :)
     srand(233);
     for (int i = 1; i < 50; ++i) {
       int x = rand() % n;
