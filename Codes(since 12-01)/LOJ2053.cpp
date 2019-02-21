@@ -86,8 +86,8 @@ int main() {
     ++n;
     _remainder[n] = 0;
     vector<int> h(1, 0);
-    for (int i = n - 1, b = 10; i; --i, b = b * 10 % p) {
-      _remainder[i] = ((s[i] - '0') * b % p + _remainder[i + 1]) % p;
+    for (int i = n - 1, b = 10; i; --i, b = (long long) b * 10 % p) {
+      _remainder[i] = ((long long) (s[i] - '0') * b % p + _remainder[i + 1]) % p;
       h.push_back(_remainder[i]);
     }
     sort(h.begin(), h.end());
