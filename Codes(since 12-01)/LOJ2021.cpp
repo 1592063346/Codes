@@ -17,7 +17,14 @@ void cmax(int& x, int y) {
 }
 
 int n, m, mc, a[N], w[N], f[N][N];
-map<int, bool> s[N][N], appeared, mem[N];
+unordered_map<int, bool> appeared, mem[N];
+
+struct state_t {
+  int t, level, v;
+
+  state_t() {}
+  state_t(int t, int level, int v): t(t), level(level), v(v) {}
+};
 
 int main() {
   scanf("%d%d%d", &n, &m, &mc);
@@ -41,31 +48,24 @@ int main() {
       cmax(max_days, i - f[i][j]);
     }
   }
-  s[0][0][1] = true;
-  mem[0][1] = true;
-  for (int i = 0; i < max_days - 1; ++i) {
-    for (int j = 0; j <= i; ++j) {
-      for (auto p : s[i][j]) {
-        if (!mem[j + 1].count(p.first)) {
-          mem[j + 1][p.first] = true;
-          s[i + 1][j + 1][p.first] = true;
-        }
-        if ((long long) p.first * j <= 1e8) {
-          if (!mem[j].count(p.first * j)) {
-            mem[j][p.first * j] = true;
-            s[i + 1][j][p.first * j] = true;
-          }
-        }
-      }
-    }
-  }
+  cerr << max_days << "\n";
+  queue<state_t> que;
   vector<pair<int, int>> all;
-  for (int i = 0; i < max_days; ++i) {
-    for (int j = 0; j <= i; ++j) {
-      for (auto p : s[i][j]) {
-        if (!appeared.count(p.first)) {
-          appeared[p.first] = true;
-          all.emplace_back(p.first, p.first - i - 1);
+  que.emplace(0, 0, 1);
+  mem[0][1] = true;
+  appeared[1] = true;
+  all.emplace_back(1, 0);
+  while (!que.empty()) {
+    state_t s = que.front();
+    que.pop();
+    if (s.t < max_days - 1) {
+      que.emplace(s.t + 1, s.level + 1, s.v);
+      if ((long long) s.v * s.level <= 1e8 && !mem[s.level].count(s.v * s.level)) {
+        mem[s.level][s.v * s.level] = true;
+        que.emplace(s.t + 1, s.level, s.v * s.level);
+        if (!appeared.count(s.v * s.level)) {
+          appeared[s.v * s.level] = true;
+          all.emplace_back(s.v * s.level, s.v * s.level - s.t - 2);
         }
       }
     }
