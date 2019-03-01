@@ -28,7 +28,6 @@ void solve() {
     for (auto v : go[i]) {
       cmax(most_remaining, number[v] - p_number[v]);
     }
-    // Ì°ÐÄ£¬¾ùÌ¯O(1) 
     for (int j = 1; j <= m; ++j) {
       if (t[j] != i && !p_number[t[j]]) {
         cmax(most_remaining, number[t[j]]);
