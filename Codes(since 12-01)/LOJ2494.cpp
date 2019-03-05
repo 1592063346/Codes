@@ -51,7 +51,6 @@ int main() {
         l = id[i];
       }
     }
-//    cout << t[l] << "\n" << t[r] << "\n";
     if (t[l] > t[r]) {
       puts("0");
     } else {
