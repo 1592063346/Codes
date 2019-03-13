@@ -2,7 +2,7 @@
 
 using namespace std;
 
-const int N = 5e4 + 10, M = 21;
+const int N = 5e4 + 10, M = 81;
 
 int n, q, f0[260][N], f1[260][N], depth[N], fb[20][N];
 long long a[N];
