@@ -92,6 +92,9 @@ void pmul(int* x, int* y) {
 }
 
 int solve() {
+  if (!k) {
+    return qpow((1 - q + mod) % mod, n);
+  }
   memset(f, -1, sizeof f);
   memset(s, -1, sizeof s);
   h[0] = 1;
