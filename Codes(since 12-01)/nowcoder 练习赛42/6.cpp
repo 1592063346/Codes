@@ -169,7 +169,7 @@ int main() {
     for (int u = x; u; u = go[u]) {
       cmin(last_answer, table.find(u, id) + get_dist(u, x));
     }
-    printf("%d\n", last_answer);
+    cout << last_answer << "\n";
   }
   return 0;
 }
