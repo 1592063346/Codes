@@ -40,7 +40,7 @@ int query(int p) {
   return result;
 }
 
-void pull(int o) {
+void push(int o) {
   int v;
   if (v = nodes[o].tag) {
     if (nodes[o].l) {
@@ -59,7 +59,7 @@ void insert(int l, int r, int& o, int p) {
   }
   if (l != r) {
     int mid = l + r >> 1;
-    pull(o);
+    push(o);
     if (p <= mid) {
       insert(l, mid, nodes[o].l, p);
     } else {
@@ -76,7 +76,7 @@ pair<int, int> query_max(int l, int r, int o, int p) {
   } else {
     int mid = l + r >> 1;
     pair<int, int> result = {-1, -1};
-    pull(o);
+    push(o);
     if (p > mid && nodes[o].r) {
       result = query_max(mid + 1, r, nodes[o].r, p);
     }
@@ -92,7 +92,7 @@ int query_min(int l, int r, int o, int p) {
     return l;
   } else {
     int mid = l + r >> 1, result = -1;
-    pull(o);
+    push(o);
     if (p <= mid && nodes[o].l) {
       result = query_min(l, mid, nodes[o].l, p);
     }
@@ -108,7 +108,7 @@ void query(int l, int r, int o) {
     mem.emplace_back(l, nodes[o].tag);
   } else {
     int mid = l + r >> 1;
-    pull(o);
+    push(o);
     if (nodes[o].l) {
       query(l, mid, nodes[o].l);
     }
@@ -176,7 +176,7 @@ int get_lca(int u, int v) {
   return father[0][u];
 }
 
-void push(int o) {
+void pull(int o) {
   minv[o] = min(minv[o << 1], minv[o << 1 | 1]);
   maxv[o] = max(maxv[o << 1], maxv[o << 1 | 1]);
 }
@@ -188,7 +188,7 @@ void build(int l, int r, int o) {
     int mid = l + r >> 1;
     build(l, mid, o << 1);
     build(mid + 1, r, o << 1 | 1);
-    push(o);
+    pull(o);
   }
 }
 
