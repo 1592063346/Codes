@@ -8,7 +8,6 @@ unsigned long long a[N], b[N], c[N], d[N], e[N], f[N], p[N], q[N], r[N], s[N], t
 int n, primes[N], all;
 bool is_prime[N];
 
-// f * mu
 void F(unsigned long long* a, int n) {
   for (int i = 1; i <= n; ++i) {
     for (int j = i + i; j <= n; j += i) {
@@ -17,7 +16,6 @@ void F(unsigned long long* a, int n) {
   }
 }
 
-// a(x) = sum_{x | d} f(d)
 void G(unsigned long long* a, int n) {
   for (int i = 1; i <= all && primes[i] <= n; ++i) {
     for (int j = n / primes[i]; j; --j) {
@@ -26,7 +24,6 @@ void G(unsigned long long* a, int n) {
   }
 }
 
-// a(x) = sum_{d | x} f(d)
 void H(unsigned long long* a, int n) {
   for (int i = 1; i <= all && primes[i] <= n; ++i) {
     for (int j = 1; j <= n / primes[i]; ++j) {
