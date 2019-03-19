@@ -34,7 +34,7 @@ struct state {
 
 int n, nodes, size[N], w[N], tag[N], root;
 long long k, ans = 1e18;
-vector<pair<int, long long> > graph[N];
+vector<pair<int, long long>> graph[N];
 vector<state> que;
 
 void get_root(int u, int pa) {
