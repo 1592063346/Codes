@@ -35,11 +35,14 @@ int qpow(int v, int p) {
   return result;
 }
 
-inline void exgcd(int a, int b, int& d, int& x, int& y) {
+void exgcd(int a, int b, int& d, int& x, int& y) {
   if (!b) {
-    d = a, x = 1, y = 0;
+    d = a;
+    x = 1;
+    y = 0;
   } else {
-    exgcd(b, a % b, d, y, x), y -= x * (a / b);
+    exgcd(b, a % b, d, y, x);
+    y -= x * (a / b);
   }
 }
 
