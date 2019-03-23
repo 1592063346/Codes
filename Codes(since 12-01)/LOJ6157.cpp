@@ -23,9 +23,10 @@ int find(int x) {
   if (father[x] == x) {
     return x;
   } else {
-    int p = find(father[x]);
-    value[x] ^= value[father[x]];
-    return father[x] = p;
+    int p = father[x];
+    father[x] = find(father[x]);
+    value[x] ^= value[p];
+    return father[x];
   }
 }
 
