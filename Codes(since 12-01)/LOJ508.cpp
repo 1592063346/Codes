@@ -21,7 +21,7 @@ void read(T& x) {
 
 template<typename T, typename... others>
 void read(T& x, others&... y) {
-	read(x), read(y...);
+  read(x), read(y...);
 }
 
 const int N = 1e6 + 10;
