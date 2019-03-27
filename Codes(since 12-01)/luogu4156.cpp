@@ -90,8 +90,9 @@ int main() {
     scanf("%d%lld%s", &n, &w, s);
     vector<border_t> border = get_border();
     fill(f + 1, f + n, inf);
+    int last = n;
     for (auto info : border) {
-      translate(n, info.p[0], f, g);
+      translate(last, info.p[0], f, g);
       memset(visit, false, sizeof visit);
       for (int i = 0; i < info.p[0]; ++i) {
         if (!visit[i]) {
@@ -110,19 +111,21 @@ int main() {
           qr = 0;
           que[0] = {0, ming.second};
           for (int j = (ming.first + 1) % pos.size(), k = 1; j != ming.first; j = (j + 1) % pos.size(), ++k) {
-            for (; k - que[ql].first >= info.p.size(); ++ql);
-            cmin(g[pos[j]], k * info.d + info.p[0] + que[ql].second);
-            long long x = g[pos[j]] - k * info.d;
+            for (; ql <= qr && k - que[ql].first >= info.p.size(); ++ql);
+            cmin(g[pos[j]], (long long) k * info.d + info.p[0] + que[ql].second);
+            long long x = g[pos[j]] - (long long) k * info.d;
             for (; ql <= qr && que[qr].second >= x; --qr);
             que[++qr] = {k, x};
           }
         }
       }
-      translate(info.p[0], n, g, f);
+      last = info.p[0];
+      copy(g, g + last, f);
     }
+    translate(last, n, f, g);
     long long answer = 0;
     for (int i = 0; i < n; ++i) {
-      answer += f[i] > w - n ? 0 : 1 + (w - n - f[i]) / n;
+      answer += g[i] > w - n ? 0 : 1 + (w - n - g[i]) / n;
     }
     printf("%lld\n", answer);
   }
