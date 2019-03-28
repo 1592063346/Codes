@@ -113,9 +113,6 @@ int main() {
     }
   }
   sort(queries.begin(), queries.end());
-  sort(events.begin(), events.end(), [&] (const info_t& a, const info_t& b) {
-    return a.id < b.id;
-  });
   int pu = 1, pv = 1, pt = -1;
   for (int i = 0; i < queries.size(); ++i) {
     int lca = get_lca(queries[i].u, pu);
