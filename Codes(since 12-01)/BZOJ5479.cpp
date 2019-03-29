@@ -4,32 +4,32 @@ using namespace std;
 
 const int N = 2e5 + 10;
 
-int n, m, logv[N], dd[20][N], id[20][N], first[N], afirst[N], depth[N], tt, ttt;
+int n, m, logv[N], dd[20][N], id[20][N], first[N], afirst[N], depth[N], t, tt;
 vector<int> adj[N];
 
 void dfs(int u, int p, int d) {
   depth[u] = d;
-  first[u] = ++ttt;
-  afirst[ttt] = u;
-  id[0][ttt] = u;
-  dd[0][ttt] = d;
+  first[u] = ++t;
+  afirst[t] = u;
+  id[0][t] = u;
+  dd[0][t] = d;
   for (int i = 0; i < adj[u].size(); ++i) {
     int v = adj[u][i];
     if (v != p) {
       dfs(v, u, d + 1);
-      ++ttt;
-      id[0][ttt] = u;
-      dd[0][ttt] = d;
+      ++t;
+      id[0][t] = u;
+      dd[0][t] = d;
     }
   }
 }
 
 void rmq_init() {
-  for (int i = 2; i <= ttt; ++i) {
+  for (int i = 2; i <= t; ++i) {
     logv[i] = logv[i >> 1] + 1;
   }
-  for (int i = 1; (1 << i) <= ttt; ++i) {
-    for (int j = 1; j + (1 << i) - 1 <= ttt; ++j) {
+  for (int i = 1; (1 << i) <= t; ++i) {
+    for (int j = 1; j + (1 << i) - 1 <= t; ++j) {
       int d1 = dd[i - 1][j], d2 = dd[i - 1][j + (1 << i - 1)];
       dd[i][j] = min(d1, d2);
       id[i][j] = d1 < d2 ? id[i - 1][j] : id[i - 1][j + (1 << i - 1)];
@@ -60,7 +60,7 @@ int main() {
       adj[u].push_back(v);
       adj[v].push_back(u);
     }
-    ttt = 0;
+    t = 0;
     dfs(1, 0, 1);
     rmq_init();
     while (m--) {
