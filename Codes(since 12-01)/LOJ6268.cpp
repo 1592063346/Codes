@@ -32,7 +32,7 @@ int qpow(int v, int p) {
   return result;
 }
 
-int n, m, rev[N];
+int n, rev[N];
 
 void dft(vector<int>& buffer, bool inv = false) {
   int n = buffer.size();
