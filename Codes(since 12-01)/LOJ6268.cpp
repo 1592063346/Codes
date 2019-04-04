@@ -144,8 +144,6 @@ vector<int> pexp(vector<int> x) {
 }
 
 int main() {
-  freopen("spl1.in", "r", stdin);
-  freopen("spl1.out", "w", stdout);
   scanf("%d", &n);
   vector<int> f(n + 1), inv(n + 1, 1);
   for (int i = 2; i <= n; ++i) {
