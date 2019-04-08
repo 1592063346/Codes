@@ -181,7 +181,7 @@ int main() {
             }
             answer += tt * (lower_bound(all.begin(), all.end(), r) - upper_bound(all.begin(), all.end(), l));
           }
-        } else{ 
+        } else { 
           int k = mul(sub(p[i].y, q[t].y), qpow(sub(p[i].x, q[t].x), mod - 2));
           int b = sub(p[i].y, mul(p[i].x, k));
           if (all_y[{k, b}]) {
