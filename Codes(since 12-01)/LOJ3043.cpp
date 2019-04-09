@@ -22,7 +22,7 @@ int mul(int x, int y) {
   return (long long) x * y % mod;
 }
 
-int n, m, f[N], g[N], mult[N], addt[N], all, tt = 1;
+int n, m, f[N << 2], g[N << 2], mult[N << 2], addt[N << 2], all, tt = 1;
 
 void tadd(int o, int x) {
   add(g[o], x);
