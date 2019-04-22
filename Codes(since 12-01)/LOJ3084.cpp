@@ -83,6 +83,11 @@ long long solve_normal() {
                 cmax(dp[i][j + a + 1][b][c][op], dp[i - 1][j][a][b][op] * binom[number[i]][a + b + c + 3] * power[times[i]][a + b + c + 3]);
               }
             }
+            if (a + b + c + 4 < 5 && j + a + b + c + 1 < 5) {
+              for (int op = 0; op < 2; ++op) {
+                cmax(dp[i][j + a + 1][b][c][op], dp[i - 1][j][a][b][op] * binom[number[i]][a + b + c + 4] * power[times[i]][a + b + c + 4]);
+              }
+            }
           }
         }
       }
