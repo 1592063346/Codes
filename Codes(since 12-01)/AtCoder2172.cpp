@@ -34,7 +34,7 @@ void dfs(int x) {
     };
     sort(states[l].begin(), states[l].end(), cmpy);
     sort(states[r].begin(), states[r].end(), cmpx);
-    for (int i = 0, j = 0, k = 1e7; i < states[l].size(); ++i) {
+    for (int i = 0, j = 0, k = 1e9; i < states[l].size(); ++i) {
       int y = states[l][i].first, z = states[l][i].second;
       while (j < states[r].size() && z + states[r][j].first <= limit) {
         k = min(k, states[r][j].second);
