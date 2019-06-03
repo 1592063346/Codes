@@ -70,7 +70,7 @@ int main() {
     dfs(1);
     return states[1].size() > 0;
   };
-  int l = 0, r = 1e7;
+  int l = 0, r = 1e9;
   while (l != r) {
     int mid = l + r >> 1;
     if (check(mid)) {
