@@ -114,6 +114,7 @@ int main() {
     ifac[i] = mul(ifac[i - 1], inv[i]);
   }
   vector<int> poly = solve(n - 1);
+  poly.resize(m, 0);
   int answer = 0;
   for (int i = 0; i < m; ++i) {
     add(answer, mul(binom(m - 1, i), poly[i]));
