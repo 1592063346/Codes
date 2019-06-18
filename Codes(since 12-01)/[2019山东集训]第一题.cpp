@@ -85,7 +85,6 @@ int main() {
       foo.push_back(t);
       t += x;
     }
-    assert(encode(foo) == p.second);
     if (state.size() == n) {
       a[here][p.second] = 1;
     } else {
@@ -100,7 +99,6 @@ int main() {
     }
     ++here;
   }
-  assert(here == tt);
   for (int i = 0; i < tt; ++i) {
     if (!a[i][i]) {
       int j = i;
