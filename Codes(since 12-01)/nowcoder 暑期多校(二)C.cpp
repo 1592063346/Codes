@@ -93,7 +93,7 @@ int main() {
   }
   solve();
   for (int i = 1; i <= q; ++i) {
-    if (answer[i] < 0) {
+    if (answer[i] <= 0) {
       cout << setprecision(10) << -answer[i] << '\n';
     } else {
       cout << "No cross" << '\n';
