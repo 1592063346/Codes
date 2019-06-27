@@ -107,26 +107,18 @@ int main() {
   for (auto i : large) {
     for (int p = 0; p < adj[i].size(); ++p) {
       int j = adj[i][p];
-      if (!tag[j] && j < i) {
+      if (tag[j] || j < i) {
         continue;
       }
       for (int q = p + 1; q < adj[i].size(); ++q) {
         int k = adj[i][q];
-        if (!tag[k] && k < i) {
-          continue;
-        }
-        if (!tag[j] && k < j) {
+        if (tag[k] || k < j) {
           continue;
         }
         if (go[j].find(k) == go[j].end()) {
           continue;
         }
-        vector<int> x;
-        x.push_back(i);
-        x.push_back(j);
-        x.push_back(k);
-        sort(x.begin(), x.end());
-        answer -= x[0] * a + x[1] * b + x[2] * c;
+        answer -= i * a + j * b + k * c;
       }
     }
   }
