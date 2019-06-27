@@ -89,7 +89,7 @@ int main() {
         if (tag[k] && k < i) {
           continue;
         }
-        if (tag[j] && k < j) {
+        if (tag[k] && tag[j] && k < j) {
           continue;
         }
         if (go[j].find(k) == go[j].end()) {
