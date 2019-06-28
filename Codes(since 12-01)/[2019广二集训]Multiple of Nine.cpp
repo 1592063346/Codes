@@ -127,7 +127,7 @@ int main() {
   };
   auto merge = [&] (vector<int> x, vector<int> y) {
     vector<int> result(1 << q);
-    vector<vector<int>> foo(q + 1, vector<int>(1 << q)), bar(q + 1, vector<int>(1 << q));
+    vector<vector<int>> foo(q + 1, vector<int>(1 << q)), bar(q + 1, vector<int>(1 << q)), reg(q + 1, vector<int>(1 << q));
     for (int i = 0; i < 1 << q; ++i) {
       foo[bit[i]][i] = x[i];
       bar[bit[i]][i] = y[i];
@@ -138,15 +138,16 @@ int main() {
     }
     for (int i = 0; i <= q; ++i) {
       for (int j = 0; i + j <= q; ++j) {
-        vector<int> t(1 << q);
         for (int k = 0; k < 1 << q; ++k) {
-          t[k] = mul(foo[i][k], bar[j][k]);
+          add(reg[i + j][k], mul(foo[i][k], bar[j][k]));
         }
-        ifmt(t);
-        for (int k = 0; k < 1 << q; ++k) {
-          if (bit[k] == i + j) {
-            add(result[k], t[k]);
-          }
+      }
+    }
+    for (int i = 0; i <= q; ++i) {
+      ifmt(reg[i]);
+      for (int j = 0; j < 1 << q; ++j) {
+        if (bit[j] == i) {
+          result[j] = reg[i][j];
         }
       }
     }
