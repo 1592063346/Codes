@@ -2,7 +2,7 @@
 
 using namespace std;
 
-const int N = 32, mod = 1e9 + 7;
+const int mod = 1e9 + 7;
 
 void add(int& x, int y) {
   x += y;
@@ -103,6 +103,10 @@ int main() {
       }
     }
   }
+  vector<int> bit(1 << q);
+  for (int i = 1; i < 1 << q; ++i) {
+    bit[i] = bit[i - (i & -i)] + 1;
+  }
   auto fmt = [&] (vector<int>& buffer) {
     for (int i = 0; i < q; ++i) {
       for (int j = 0; j < 1 << q; ++j) {
@@ -122,14 +126,11 @@ int main() {
     }
   };
   auto merge = [&] (vector<int> x, vector<int> y) {
-    vector<int> size(1 << q), result(1 << q);
+    vector<int> result(1 << q);
     vector<vector<int>> foo(q + 1, vector<int>(1 << q)), bar(q + 1, vector<int>(1 << q));
-    for (int i = 1; i < 1 << q; ++i) {
-      size[i] = size[i - (i & -i)] + 1;
-    }
     for (int i = 0; i < 1 << q; ++i) {
-      foo[size[i]][i] = x[i];
-      bar[size[i]][i] = y[i];
+      foo[bit[i]][i] = x[i];
+      bar[bit[i]][i] = y[i];
     }
     for (int i = 0; i <= q; ++i) {
       fmt(foo[i]);
@@ -143,7 +144,7 @@ int main() {
         }
         ifmt(t);
         for (int k = 0; k < 1 << q; ++k) {
-          if (size[k] == i + j) {
+          if (bit[k] == i + j) {
             add(result[k], t[k]);
           }
         }
